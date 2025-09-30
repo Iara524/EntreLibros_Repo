@@ -2,7 +2,7 @@
     margin: 0%;
     border: 0%;
     padding: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: "Arial", sans-serif;
     font-optical-sizing: auto; /* Ajusta el grosor y forma del texto según el tamaño para mejorar la legibilidad */
     font-style: normal;
 }
@@ -24,7 +24,7 @@ header{
 
 /* Estilos del menú de navegación */
 nav {
-    background-color: #171717;
+    background-color: #ffffff;
     text-align: center;
     padding: 10px;
 }
@@ -37,11 +37,11 @@ nav {
     position: sticky;
     align-items: center;
     padding: 10px;
-    background-color: #171717;
+    background-color: #ffffff;
     li{
         display: inline;
         padding: 20px;
-        background-color: #171717;
+        background-color: #ffffff;
         justify-content: center;
         a{
             text-decoration: none; /* Quita el subrayado */
@@ -49,7 +49,7 @@ nav {
             font-size: 25px; 
             padding: 16px; 
             margin: 5px; 
-            font-family: "Bebas Neue", sans-serif;
+            font-family: "Arial", sans-serif;
             font-weight: 200;
             background-color: #171717;     
         }     
@@ -57,8 +57,8 @@ nav {
 }
 
 .menu li a:hover{
-    color: #ff7700;
-    background-color: rgb(40, 51, 63);
+    color: #ffc0cb;
+    background-color: rgb(222, 216, 217);
     border-radius: 15px;
 }
 
@@ -76,7 +76,7 @@ nav {
 
 /* Estilos del buscador */
 .search{
-    background-color: #000000;
+    background-color: #f5f5dc;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -138,11 +138,11 @@ nav {
     background-color: rgb(0, 0, 0);
     color:white;
     font-size: 90px;
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "Arial", sans-serif;
     font-weight: 400;
     font-style: italic;
 }
-/*Encontrá lo que buscas, vendé lo que no necesitas.*/
+/*Titulos.*/
 .main-title h3{
     text-align: center;
     background-color: rgb(0, 0, 0);
@@ -150,7 +150,7 @@ nav {
     font-size: 25px;
     font-weight: lighter;
     border-color: #000000;
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "Arial", sans-serif;
     font-weight: 400;
     font-style: italic;
     padding:10px;
@@ -310,7 +310,7 @@ form label,
 form select{
     margin: 7px;
     font-size: 16px;
-    font-family: "Roboto", sans-serif;
+    font-family: "Arial", sans-serif;
     border-radius: 4px;
     width: 90%;
     padding: 1%;
@@ -427,39 +427,50 @@ button:hover{
 
 .sales-title h2{
     text-align: center;
-    font-size: 40px;
+    font-size: 25px;
     padding: 20px;
     font-style: italic;
     background-color: #000000;
     color: #ffffff;
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "Arial", sans-serif;
     font-weight: 400;
-    border-color: #ff6600;
+    border-color: #f5f5dc;
     border-style: solid;
     border-width: 4px;
     border-right-color: #000000;
     border-left-color: #000000;
 }
 
+
+  .sales {
+  width: 100%;
+  height: 400px;   /* ajusta según el tamaño que quieras */
+  overflow: hidden;
+  position: relative;
+}
+
 .sales ul {
-    display: flex;
-    width: 300%; /* 3 items = 300% */
-    animation: slide 10s infinite ease-in-out; /* Aplica 'slide' durante 10 segundos, repitiéndola infinitamente con una transición suave al inicio y al final */
-    padding: 0;
-    margin: 0;
-  }
+  display: flex;
+  width: 300%; /* 3 items = 300% */
+  animation: slide 15s infinite ease-in-out; 
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
 .sales ul li {
-    flex: 0 0 100%;  /*No crece ni se encoge, ocupa siempre el 100% del ancho del contenedor */
-    display: flex;
-    justify-content: center;
-  }
+  flex: 0 0 100%;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .sales ul li img{
-    width: 100%;
-    object-fit: cover;
-    height: 100%;
-  }
+.sales ul li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 /*Estilos de la sección contacto*/
 .contact{
@@ -494,7 +505,7 @@ footer{
     background-color: rgb(0, 0, 0);
     display: flex; /*Uso de flexbox*/
     flex-direction: row;
-    padding: 8px;
+    padding: 6px;
     justify-content: center;
     column-gap: 10px;
     /* position: absolute;
