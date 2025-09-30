@@ -13,9 +13,9 @@ header {
   color: white;
 }
 
-/* ===============================
+/* 
    Nav
-   =============================== */
+   */
 nav{
   background:#fff;
   border-bottom:1px solid var(--border);
@@ -60,9 +60,9 @@ h1 {
 .producto button:hover {
   background: #222;
 }
-/* ================================
+/*
    Grilla de productos
-   ================================ */
+  */
 main.producto {
   max-width: 1200px;
   margin: 40px auto;
@@ -72,9 +72,9 @@ main.producto {
   gap: 20px;
 }
 
-/* ================================
+/* 
    Tarjeta
-   ================================ */
+= */
 .producto {
   background: white;
   border: 1px solid #ddd;
@@ -99,9 +99,9 @@ main.producto {
   background: #fafafa;
 }
 
-/* ================================
+/* 
    Responsive
-   ================================ */
+    */
 
 /* Tablet (≤ 992px) */
 @media (max-width: 992px) {
@@ -140,9 +140,9 @@ main.producto {
   }
 }
 
-/* ===============================
+/*
    Footer
-   =============================== */
+   */
 footer{
   border-top:1px solid var(--border);
   background:#fff;

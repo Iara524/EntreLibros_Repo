@@ -17,7 +17,7 @@
 html,body{ height:100%; }
 body{
   margin:0;
-  font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-family: "Arial", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
@@ -73,7 +73,7 @@ header .menu-toggle{
 }
 
 .main-title h1{
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: clamp(42px, 7vw, 72px);
   letter-spacing: .5px;
   margin: 6px 0 0;
@@ -207,16 +207,10 @@ main{
 .btn.primary:hover{ background:#000; }
 .btn.ghost{ background:#f3f3f3; color:#333; }
 
-/* Badge opcional (ej: SIN STOCK): agregar .badge dentro de .card */
-.badge{
-  position:absolute; top:10px; left:10px;
-  background:#000; color:#fff; font-size:12px; font-weight:700;
-  padding:4px 8px; border-radius:4px;
-}
 
-/* ===============================
+/* 
    Título de promociones
-   =============================== */
+ */
 .sales-title{
   margin: 28px 0 8px;
   text-align:center;
@@ -225,9 +219,9 @@ main{
   margin:0; color:#222;
 }
 
-/* ===============================
+/* 
    Carrusel Promociones (scroll)
-   =============================== */
+    */
 .sales{
   background: var(--card);
   border:1px solid var(--border);
@@ -251,9 +245,9 @@ main{
   border-radius: 8px;
 }
 
-/* ===============================
+/*
    Footer
-   =============================== */
+  */
 footer{
   border-top:1px solid var(--border);
   background:#fff;
@@ -277,9 +271,9 @@ footer .redes a, footer .contactdata a{
 }
 footer img{ width: 18px; height: 18px; object-fit: contain; }
 
-/* ===============================
+/* 
    Responsive
-   =============================== */
+    */
 
 /* Tablet (≤ 992px) */
 @media (max-width: 992px){
@@ -309,4 +303,3 @@ footer img{ width: 18px; height: 18px; object-fit: contain; }
   .sales img{ height: 150px; }
   footer > div{ padding: 14px; }
 }
-
