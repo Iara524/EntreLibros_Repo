@@ -54,6 +54,34 @@ body {
   outline: none;
 }
 
+/* ===============================
+   Nav
+   =============================== */
+nav{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+nav ul{
+  max-width: var(--maxw);
+  margin:0 auto;
+  padding: 0 16px;
+  list-style:none;
+  display:flex; gap:14px;
+  justify-content:center;
+}
+nav a{
+  display:block;
+  padding:12px;
+  text-decoration:none;
+  color: var(--dark);
+  font-weight:600;
+  border-radius:6px;
+}
+nav a:hover{ background:#f0f0f0; }
+
+
 /* Botón */
 .contact-form button {
   padding: 12px;
@@ -110,3 +138,29 @@ body {
     padding: 10px;
   }
 }
+
+/* ===============================
+   Footer
+   =============================== */
+footer{
+  border-top:1px solid var(--border);
+  background:#fff;
+  margin-top: 40px;
+}
+footer > div{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+footer .copyright,
+footer .redes,
+footer .contactdata{
+  display:grid; gap:4px; color: var(--muted);
+}
+
+footer .redes a, footer .contactdata a{
+  color: var(--dark); text-decoration: none; font-weight: 600;
+  display:inline-flex; gap:8px; align-items:center;
+}
+footer img{ width: 18px; height: 18px; object-fit: contain; }

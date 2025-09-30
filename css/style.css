@@ -44,12 +44,6 @@ header .menu-toggle{
   cursor: pointer;
 }
 
-nav{
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
 .menu{
   list-style: none;
   margin:0; padding:0;
@@ -304,15 +298,8 @@ footer img{ width: 18px; height: 18px; object-fit: contain; }
     flex-direction: column;
     min-width: 200px;
   }
-  /* Mostrar menú cuando JS agregue la clase .open al <nav> */
-  nav.open .menu{ display:flex; }
+ 
 
-  .search{
-    grid-template-columns: 1fr;
-  }
-  .filters-form{ min-width: unset; }
-  .sales img{ height: 160px; }
-}
 
 /* Celular (≤ 600px) */
 @media (max-width: 600px){
