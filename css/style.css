@@ -291,8 +291,7 @@ footer img{ width: 18px; height: 18px; object-fit: contain; }
     min-width: 200px;
   }
  
-
-
+ }
 /* Celular (≤ 600px) */
 @media (max-width: 600px){
   .main-title h1{ font-size: clamp(36px, 9vw, 52px); }
