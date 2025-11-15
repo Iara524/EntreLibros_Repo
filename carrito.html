@@ -9,24 +9,51 @@
 <body>
     <header>
         <h1>Carrito</h1>
-        
     </header>
-    <nav>
-         <nav>
-            <ul class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="producto.html">Productos</a></li>
-            </ul>
-        </nav>
-    </nav>
-    <div class="container">
-        <main>
-             <section class="cart-grid">
-               
-            </section>
-        </main>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda | Carrito</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <h1 class="logo">Mi Tienda</h1>
+
+    <div class="search-wrapper">
+      <input
+        type="text"
+        id="input-search-products"
+        placeholder="Buscar productos..."
+      />
     </div>
+
+    <div class="cart-icon">
+      🛒
+      <span id="cart-count">0</span>
+    </div>
+  </header>
+    <!-- Carrito -->
+    <aside class="cart-section">
+      <h2>Carrito</h2>
+      <ul id="cart-list" class="cart-list">
+        <!-- Items del carrito se agregan acá por JS -->
+      </ul>
+
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total">$0</span>
+      </div>
+    </aside>
+  </main>
+
+  
+  <script src="producto.html"></script>
+</body>
+</html>
+
   <footer>
         <div class="copyright">
             <p>© 2025 EntreLibros. Todos los derechos reservados.</p>

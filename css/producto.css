@@ -1,3 +1,11 @@
+:root{
+  --border: #ddd;
+  --shadow: 0 2px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 6px 18px rgba(0,0,0,0.15);
+  --maxw: 1200px;
+  --muted: #666;
+  --dark: #222;
+}
 
 body {
   margin: 0;
@@ -13,24 +21,33 @@ header {
   color: white;
 }
 
-/* 
-   Nav
-   */
+h1 {
+  margin: 0;
+}
+
+/* =========================
+   NAV + filtros de categoría
+   ========================= */
 nav{
   background:#fff;
   border-bottom:1px solid var(--border);
   box-shadow: var(--shadow);
 }
 
+/* si usás <nav><ul>...</ul></nav> esto aplica, sino no pasa nada */
 nav ul{
   max-width: var(--maxw);
   margin:0 auto;
   padding: 0 16px;
   list-style:none;
-  display:flex; gap:14px;
+  display:flex; 
+  gap:14px;
   justify-content:center;
 }
-nav a{
+
+/* links de categoría (.categoria-producto-filter) */
+nav a,
+.categoria-producto-filter{
   display:block;
   padding:12px;
   text-decoration:none;
@@ -38,15 +55,81 @@ nav a{
   font-weight:600;
   border-radius:6px;
 }
-nav a:hover{ background:#f0f0f0; }
 
-
-h1 {
-  margin: 0;
+nav a:hover,
+.categoria-producto-filter:hover{ 
+  background:#f0f0f0; 
 }
 
-.producto button {
-  margin: 12px;
+/* =========================
+   Buscador
+   ========================= */
+#input-search-products{
+  display:block;
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto 10px;
+  padding:10px 12px;
+  border:1px solid #ddd;
+  border-radius: 6px;
+  font-size:14px;
+}
+
+/*
+   Grilla de productos
+   (antes era main.producto)
+  */
+.product-container {
+  max-width: 1200px;
+  margin: 20px auto 40px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* 
+   Tarjeta de producto
+   (antes .producto)
+= */
+.product-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+  padding: 12px;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* si más adelante agregás imágenes dentro del producto */
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #fafafa;
+}
+
+/* títulos y texto dentro de la tarjeta */
+.product-card h3{
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+.product-card p{
+  margin: 4px 0;
+}
+
+/* botón Agregar al carrito (antes .producto button) */
+.product-card button {
+  margin: 12px 0 4px;
   padding: 10px;
   background: #444;
   color: white;
@@ -57,46 +140,39 @@ h1 {
   transition: background .2s ease;
 }
 
-.producto button:hover {
+.product-card button:hover {
   background: #222;
 }
-/*
-   Grilla de productos
-  */
-main.producto {
-  max-width: 1200px;
-  margin: 40px auto;
+
+/* =========================
+   Carrito
+   ========================= */
+h2{
+  max-width: var(--maxw);
+  margin: 0 auto;
   padding: 0 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
 }
 
-/* 
-   Tarjeta
-= */
-.producto {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  overflow: hidden;
-  transition: transform .2s ease, box-shadow .2s ease;
+#cart-count,
+#cart-total{
+  font-weight: 700;
 }
 
-.producto:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+#cart-list{
+  max-width: var(--maxw);
+  margin: 0 auto 20px;
+  padding: 0 20px;
+  list-style: none;
 }
 
-.producto img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background: #fafafa;
+#cart-list li{
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:6px;
+  padding:8px 10px;
+  margin-bottom:6px;
+  font-size:14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 /* 
@@ -105,36 +181,35 @@ main.producto {
 
 /* Tablet (≤ 992px) */
 @media (max-width: 992px) {
-  main.producto {
+  .product-container {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
   }
-  .producto img {
+  .product-card img {
     height: 180px;
   }
-  .producto h2 {
+  .product-card h3 {
     font-size: 15px;
-    height: auto;
   }
 }
 
 /* Celular (≤ 600px) */
 @media (max-width: 600px) {
-  main.producto {
+  .product-container {
     grid-template-columns: 1fr; /* una sola columna */
     padding: 0 10px;
     gap: 14px;
   }
-  .producto img {
+  .product-card img {
     height: 160px;
   }
-  .producto h2 {
+  .product-card h3 {
     font-size: 14px;
   }
-  .producto p {
+  .product-card p {
     font-size: 13px;
   }
-  .producto button {
+  .product-card button {
     font-size: 14px;
     padding: 8px;
   }
@@ -157,11 +232,22 @@ footer > div{
 footer .copyright,
 footer .redes,
 footer .contactdata{
-  display:grid; gap:4px; color: var(--muted);
+  display:grid; 
+  gap:4px; 
+  color: var(--muted);
 }
 
-footer .redes a, footer .contactdata a{
-  color: var(--dark); text-decoration: none; font-weight: 600;
-  display:inline-flex; gap:8px; align-items:center;
+footer .redes a, 
+footer .contactdata a{
+  color: var(--dark); 
+  text-decoration: none; 
+  font-weight: 600;
+  display:inline-flex; 
+  gap:8px; 
+  align-items:center;
 }
-footer img{ width: 18px; height: 18px; object-fit: contain; }
+footer img{ 
+  width: 18px; 
+  height: 18px; 
+  object-fit: contain; 
+}

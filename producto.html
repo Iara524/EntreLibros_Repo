@@ -18,42 +18,76 @@
             </ul>
         </nav>
     </nav>
-  <main class="producto">
-    <div class="producto">
-      <img src="imagenes/producto.png" alt="Producto 1">
+
+  <!-- LISTA DE PRODUCTOS -->
+  <div class="product-container">
+
+    <div class="product-card"
+         data-name="Biografia Leonel Scaloni"
+         data-category="Deportes"
+         data-price="1200"
+         data img= "imagenes/producto.png">
       <h2>Biografia Leonel Scaloni</h2>
       <p>La biografía definitiva del director técnico que devolvió al seleccionado argentino a la cima del fútbol mundial. La historia más completa jamás contada del hombre que acompañó a Messi hasta el único título que le faltaba, desde Pujato a su actualidad en Mallorca de cara a la Copa del Mundo 2026.</p>
-      <button>Comprar</button>
+      <p>Precio $100000</p>
+      <button>Comprar</button></p>
+      <button class="btn-add-cart">Agregar al carrito</button>
     </div>
 
-    <div class="producto">
-      <img src="imagenes/producto2.png" alt="Producto 2">
+    <div class="product-card"
+         data-name="EL ULTIMO SECRETO"
+         data-category="Policiales"
+         data-price="60000"
+         data-img= "imagenes/producto2.png"   >
       <h2>EL ULTIMO SECRETO</h2>
       <p>Robert Langdon, el célebre profesor de simbología, viaja a Praga para asistir a una conferencia revolucionaria impartida por Katherine Solomon, una brillante científica noética con quien ha iniciado una relación. Katherine está a punto de publicar un libro cuyos asombrosos descubrimientos sobre la naturaleza de la conciencia humana prometen desafiar siglos de creencias consolidadas. Pero un brutal asesinato desata el caos.</p>
-      <button>Comprar</button>
+      <p>Precio: $60000</p>
+      <button>Comprar</button></p>
+      <button class="btn-add-cart">Agregar al carrito</button>
     </div>
 
-    <div class="producto">
-      <img src="imagenes/producto3.png" alt="Producto 3">
-      <h2>SIBO</h2>
-      <p>Cada vez más personas sufrimos hinchazón, gases, dolor abdominal o molestias después de comer, sin encontrar respuestas ni soluciones duraderas. Sabemos que algo no está bien en nuestros cuerpos, pero ¿cómo identificar si es SIBO y qué hacer al respecto? </p>
-      <button>Comprar</button>
+    <div class="product-card"
+         data-name="Salud"
+         data-category="accesorios"
+         data-price="">
+      <h3>SIBO</h3>
+       <p>Cada vez más personas sufrimos hinchazón, gases, dolor abdominal o molestias después de comer, sin encontrar respuestas ni soluciones duraderas. Sabemos que algo no está bien en nuestros cuerpos, pero ¿cómo identificar si es SIBO y qué hacer al respecto? </p>
+      <p>Precio: $40000</p>
+       <button>Comprar</button>
+      <button class="btn-add-cart">Agregar al carrito</button>
     </div>
 
-    <div class="producto">
-      <img src="imagenes/producto4.png" alt="Producto 4">
-      <h2>ESTE DOLOR NO ES MIO</h2>
+ <div class="product-card"
+         data-name="Psicologia"
+         data-category="Winnie y Wilbur.LA CALABAZA GIGANTE"
+         data-price="34000"
+         data-img="imagenes/producto5.png">
+      <h3>WINNIE Y WILBUR. LA CALABAZA GIGANTE</h3>
+       <p>Continúan las disparatadas aventuras de la bruja más divertida del mundo. ¿Pura magia.¿ The Times A la bruja Winnie y a su gato Wilbur les encanta comer verduras...</p>
+      <p>Precio: $34000</p>
+       <button>Comprar</button>
+      <button class="btn-add-cart">Agregar al carrito</button>
+    </div>
+<div class="product-card"
+         data-name="Este dolor no es mio"
+         data-category="Autoayuda"
+         data-price="75000"
+         data-img="imagenes/producto4.png">
+      <h3>ESTE DOLOR NO ES MIO</h3>
       <p>DEPRESIÓN. ANSIEDAD. DOLORES CRÓNICOS. FOBIAS. PENSAMIENTOS OBSESIVOS. La evidencia científca muestra que los traumas pueden ser heredados.</p>
-      <button>Comprar</button>
+      <p>Precio: $75000</p>
+       <button>Comprar</button>
+      <button class="btn-add-cart">Agregar al carrito</button>
     </div>
 
-    <div class="producto">
-      <img src="imagenes/producto5.png" alt="Producto 5">
-      <h2>WINNIE Y WILBUR. LA CALABAZA GIGANTE</h2>
-      <p>Continúan las disparatadas aventuras de la bruja más divertida del mundo. ¿Pura magia.¿ The Times A la bruja Winnie y a su gato Wilbur les encanta comer verduras...</p>
-      <button>Comprar</button>
-    </div>
-  </main>
+  </div>
+
+  <!-- 🛒 CARRITO -->
+  <h2>Carrito</h2>
+  <p>Productos en el carrito: <span id="cart-count">0</span></p>
+  <ul id="cart-list"></ul>
+  <p>Total: <span id="cart-total">$0</span></p>
+
  <footer>
         <div class="copyright">
             <p>© 2025 EntreLibros. Todos los derechos reservados.</p>
@@ -69,6 +103,9 @@
             <p>"Si no encuentras el libro que buscas.Podes contactarnos."</p>
         </div>
     </footer>
+
+<!-- TU JS SIEMPRE AL FINAL -->
+  <script src="app.js"></script>
 
 </body>
 </html>
