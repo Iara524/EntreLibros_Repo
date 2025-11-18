@@ -1,0 +1,174 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+/* Contenedor del carrito */
+.carrito-container {
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.carrito-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Lista de productos del carrito */
+#cart-list {
+  list-style: none;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1.2rem;
+  padding-right: 0.3rem;
+}
+
+#cart-list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Resumen */
+.cart-summary {
+  border-top: 1px solid #ddd;
+  padding-top: 0.8rem;
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1rem;
+}
+
+.cart-summary span {
+  font-weight: bold;
+}
+
+/* Botones */
+.cart-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.btn-clear,
+.btn-back {
+  flex: 1 1 150px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s, color 0.2s;
+}
+
+.btn-clear {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.btn-clear:hover {
+  background-color: #d32f2f;
+  transform: translateY(-1px);
+}
+
+.btn-back {
+  background-color: #222;
+  color: #fff;
+}
+
+.btn-back:hover {
+  background-color: #444;
+  transform: translateY(-1px);
+}
+
+/* Footer (si no usas style.css global, podés dejar esto) */
+footer {
+  border-top: 1px solid #ddd;
+  background: #fff;
+  margin-top: 40px;
+}
+
+footer > div {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+footer .copyright,
+footer .redes,
+footer .contactdata {
+  display: grid;
+  gap: 4px;
+  color: #666;
+}
+
+footer .redes a,
+footer .contactdata a {
+  color: #222;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+footer img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+
+  /* Footer */ 
+     footer{ border-top:1px solid var(--border); 
+    background:#fff;
+     margin-top: 40px; }
+     footer > div{ max-width: var(--maxw);
+        
+    margin: 0 auto;
+     padding: 16px;
+     } footer 
+     .copyright, footer 
+     
+     .redes, footer 
+     .contactdata{ display:grid; 
+    gap:4px; color: var(--muted);
+ } footer 
+ .redes a,
+ 
+ footer .contactdata a{ color: var(--dark); text-decoration: none;
+    
+    font-weight: 600; 
+    display:inline-flex;
+     gap:8px;
+      align-items:center; 
+    } footer img{ width: 18px; height: 18px; object-fit: contain; }
+    
+    
+    /* Responsive */ /* Tablet (≤ 992px) */ @media (max-width: 992px){ header .menu-toggle{ display:inline-block; } nav{ position: relative; } .menu{ position: absolute; right: 16px; top: 54px; background: #fff; border:1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow-lg); padding: 8px; display: none; flex-direction: column; min-width: 200px; } } /* Celular (≤ 600px) */ @media (max-width: 600px){ .main-title h1{ font-size: clamp(36px, 9vw, 52px); } .main-title h3{ font-size: 14px; } .gallery{ grid-template-columns: 1fr; gap: 14px; } .card .thumb{ height: 170px; } 
+     
+     .sales ul{ gap:10px; padding:10px; } 
+     
+     .sales img{ height: 150px; 
+    
+    } 
+}

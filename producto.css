@@ -1,0 +1,191 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #faf5f0;
+  color: #333;
+}
+
+header {
+  background: #000;
+  color: white;
+  padding: 1rem 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+main {
+  max-width: 960px;
+  margin: 1.5rem auto;
+  padding: 0 1rem 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+/* ===============================
+   Nav
+   =============================== */
+nav{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+nav ul{
+  max-width: var(--maxw);
+  margin:0 auto;
+  padding: 0 16px;
+  list-style:none;
+  display:flex; gap:14px;
+  justify-content:center;
+}
+nav a{
+  display:block;
+  padding:12px;
+  text-decoration:none;
+  color: var(--dark);
+  font-weight:600;
+  border-radius:6px;
+}
+nav a:hover{ background:#f0f0f0; }
+
+
+
+
+
+h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.info-text {
+  font-size: 0.9rem;
+}
+
+.config-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0.75rem 0;
+}
+
+.config-row input[type="text"] {
+  flex: 1 1 220px;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.config-row button {
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  background: #5c3b8a;
+  color: white;
+}
+
+.config-row button.secondary {
+  background: #999;
+}
+
+#tokenStatus {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+#lista-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.producto {
+  border-radius: 0.75rem;
+  border: 1px solid #eee;
+  padding: 0.75rem 0.9rem 1rem;
+  background: #fdfaf7;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.producto img {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  max-height: 220px;
+}
+
+.producto h3 {
+  margin: 0.4rem 0 0;
+  font-size: 1rem;
+  color: #0000;
+}
+
+.producto p {
+  margin: 0.15rem 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.error {
+  color: #b00020;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+}
+
+/*
+   Footer
+   */
+footer{
+  border-top:1px solid var(--border);
+  background:#fff;
+  margin-top: 40px;
+}
+footer > div{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+footer .copyright,
+footer .redes,
+footer .contactdata{
+  display:grid; 
+  gap:4px; 
+  color: var(--muted);
+}
+
+footer .redes a, 
+footer .contactdata a{
+  color: var(--dark); 
+  text-decoration: none; 
+  font-weight: 600;
+  display:inline-flex; 
+  gap:8px; 
+  align-items:center;
+}
+footer img{ 
+  width: 18px; 
+  height: 18px; 
+  object-fit: contain; 
+}
