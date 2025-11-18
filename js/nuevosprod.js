@@ -104,7 +104,6 @@ async function cargarProductosDesdeAirtable() {
 
 // El Render
 
-
 function renderizarProductos(records) {
   const cont = document.getElementById(PRODUCT_CONTAINER_ID);
   if (!cont) return;
@@ -118,29 +117,38 @@ function renderizarProductos(records) {
     .map((record) => {
       const f = record.fields || {};
       const nombre = f.Nombre || "Sin nombre";
-      const precio = f.Precio ? f.Precio + " $" : "";
+      const precioNumero = f.Precio || 0;
+      const precioTexto = precioNumero ? precioNumero + " $" : "";
       const descripcion = f.Descripcion || f.Descripción || "";
       const imagenUrl = f.Imagen?.[0]?.url || "";
+      const categoria = f.Categoria || "";
 
       return `
-        <article class="producto">
+        <article class="product-card"
+          data-name="${nombre}"
+          data-price="${precioNumero}"
+          data-category="${categoria.toLowerCase()}"
+        >
           ${imagenUrl ? `<img src="${imagenUrl}" alt="${nombre}">` : ""}
+
           <h3>${nombre}</h3>
-          ${precio ? `<p><strong>Precio:</strong> ${precio}</p>` : ""}
+          ${precioTexto ? `<p><strong>Precio:</strong> ${precioTexto}</p>` : ""}
           ${descripcion ? `<p>${descripcion}</p>` : ""}
+
+          <button class="btn-add-cart">Agregar al carrito</button>
         </article>
       `;
     })
     .join("");
 
   cont.innerHTML = html;
+
+  // para conectar lo que viene de airtable 
+  if (typeof window.registerProductCard === "function") {
+    cont.querySelectorAll(".product-card").forEach((card) => {
+      window.registerProductCard(card);
+    });
+  } else {
+    console.warn("registerProductCard no existe: revisá que app.js se cargue antes que nuevosprod.js");
+  }
 }
-
-// Y aca Inicia
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  actualizarEstadoToken();
-  cargarProductosDesdeAirtable();
-});
-
