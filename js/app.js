@@ -1,155 +1,127 @@
-// --- REFERENCIAS DEL DOM ---
-const productsDom = document.querySelector(".product-container");
-const inputSearch = document.getElementById("input-search-products");
-const categoryLinks = document.querySelectorAll(".categoria-producto-filter");
+document.addEventListener("DOMContentLoaded", () => {
+  const CART_KEY = "cart";
 
-const cartList = document.getElementById("cart-list");
-const cartCount = document.getElementById("cart-count");
-const cartTotal = document.getElementById("cart-total");
-
-// --- ARMAR ARRAY DE PRODUCTOS DESDE EL DOM ---
-const productCards = document.querySelectorAll(".product-card");
-
-const products = [...productCards].map(card => ({
-  element: card,
-  name: card.dataset.name.toLowerCase(),
-  displayName: card.dataset.name,
-  category: card.dataset.category.toLowerCase(),
-  price: Number(card.dataset.price)
-}));
-
-// --- RENDERIZAR PRODUCTOS (mostrar/ocultar) ---
-function renderProducts(list) {
-  products.forEach(p => {
-    p.element.style.display = "none";
-  });
-
-  list.forEach(p => {
-    p.element.style.display = "block";
-  });
-}
-
-// --- FILTRO POR CATEGORÍA ---
-function filterProductsByCategory(category) {
-  if (category === "todos") return products;
-  return products.filter(p => p.category === category);
-}
-
-// --- BUSCADOR ---
-inputSearch.addEventListener("keyup", () => {
-  const term = inputSearch.value.toLowerCase();
-  const filtered = products.filter(p => p.name.includes(term));
-  renderProducts(filtered);
-});
-
-// --- CLICK EN CATEGORÍAS ---
-categoryLinks.forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const category = e.target.innerText.toLowerCase();
-    const filtered = filterProductsByCategory(category);
-    renderProducts(filtered);
-  });
-});
-
-// --- 🛒 CARRITO ---
-let cart = [];
-
-// Agregar producto al carrito
-function addToCart(product) {
-  const existing = cart.find(item => item.name === product.name);
-
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({
-      name: product.displayName,
-      price: product.price,
-      quantity: 1
-    });
+  // --- Helpers de carrito en localStorage ---
+  function getCart() {
+    try {
+      const stored = localStorage.getItem(CART_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      return [];
+    }
   }
 
-  renderCart();
-}
+  function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
 
-// Dibujar el carrito en el DOM
-function renderCart() {
-  // limpiar lista
-  cartList.innerHTML = "";
+  function addToCart(product) {
+    let cart = getCart();
 
-  cart.forEach(item => {
-    const li = document.createElement("li");
-    li.innerText = `${item.name} x${item.quantity} - $${item.price * item.quantity}`;
-    cartList.appendChild(li);
-  });
+    const existing = cart.find(item => item.name === product.displayName);
 
-  // cantidad total de productos
-  const count = cart.reduce((acc, item) => acc + item.quantity, 0);
-  cartCount.innerText = count;
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({
+        name: product.displayName,
+        price: product.price,
+        quantity: 1
+      });
+    }
 
-  // total $
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  cartTotal.innerText = `$${total}`;
-}
+    saveCart(cart);
+    alert(`Agregado al carrito: ${product.displayName}`);
+  }
 
-// --- BOTONES "AGREGAR AL CARRITO" ---
-const addButtons = document.querySelectorAll(".btn-add-cart");
+  // --- Referencias del DOM ---
+  const inputSearch    = document.getElementById("input-search-products");
+  const categoryLinks  = document.querySelectorAll(".categoria-producto-filter"); // links del nav (si existen)
+  const categorySelect = document.getElementById("category-filter");              // <select>
+  const productContainer = document.querySelector(".product-container");
 
-// Cada botón corresponde a la misma posición del producto
-addButtons.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    const product = products[index];
-    addToCart(product);
-  });
-});
+  // Todos los productos (estáticos + Airtable)
+  let products = [];
 
-// --- INICIO: mostrar todos los productos y carrito vacío ---
-renderProducts(products);
-renderCart();
+  // --- Crear objeto producto desde una card ---
+  function buildProductFromCard(card) {
+    const obj = {
+      element: card,
+      name: (card.dataset.name || card.querySelector("h3")?.textContent || "")
+              .trim()
+              .toLowerCase(),
+      displayName: card.dataset.name || card.querySelector("h3")?.textContent || "Producto",
+      category: (card.dataset.category || "")
+              .trim()
+              .toLowerCase(),
+      price: Number(card.dataset.price || 0)
+    };
 
+    const btn = card.querySelector(".btn-add-cart");
+    if (btn) {
+      btn.addEventListener("click", () => addToCart(obj));
+    }
 
+    products.push(obj);
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const productsDom = document.querySelector(".product-container");
-  const inputSearch = document.getElementById("input-search-products");
-  const categoryLinks = document.querySelectorAll(".categoria-producto-filter");
+  // --- Tomar las cards estáticas que ya están en el HTML ---
+  const initialCards = document.querySelectorAll(".product-card");
+  initialCards.forEach(buildProductFromCard);
 
-  // ⬅️ Extraer productos desde el DOM
-  let products = [...document.querySelectorAll(".product-card")].map(card => ({
-    element: card,
-    name: card.dataset.name.toLowerCase(),
-    category: card.dataset.category.toLowerCase(),
-    price: card.dataset.price
-  }));
+  // --- Función global para que nuevosprod.js registre cards de Airtable ---
+  window.registerProductCard = function (card) {
+    buildProductFromCard(card);
+    renderProducts(products);
+  };
 
-  // --- Renderizado (solo oculta o muestra elementos existentes)
+  // --- Renderizar (mostrar/ocultar) ---
   function renderProducts(list) {
     products.forEach(p => p.element.style.display = "none");
     list.forEach(p => p.element.style.display = "block");
   }
 
-  // --- Filtrar por categoría
+  // --- Filtro por categoría ---
   function filterProductsByCategory(category) {
-    if (category === "todos") return products;
-    return products.filter(p => p.category === category);
+    const cat = (category || "").trim().toLowerCase();
+    if (!cat || cat === "todos") return products;
+    return products.filter(p => p.category === cat);
   }
 
-  // --- Clic en categorías
+  // --- Buscador por texto ---
+  if (inputSearch) {
+    inputSearch.addEventListener("keyup", () => {
+      const term = inputSearch.value.toLowerCase();
+      const filtered = products.filter(p => p.name.includes(term));
+      renderProducts(filtered);
+    });
+  }
+
+  // --- Click en categorías (links del nav, si los seguís usando) ---
   categoryLinks.forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
-      const cat = e.target.innerText.toLowerCase();
-      renderProducts(filterProductsByCategory(cat));
+      const category = e.target.innerText.toLowerCase();
+      const filtered = filterProductsByCategory(category);
+      renderProducts(filtered);
+
+      // opcional: mover también el select
+      if (categorySelect) {
+        categorySelect.value = category || "todos";
+      }
     });
   });
 
-  // --- Buscador
-  inputSearch.addEventListener("keyup", () => {
-    const term = inputSearch.value.toLowerCase();
-    const filtered = products.filter(p => p.name.includes(term));
-    renderProducts(filtered);
-  });
+  // --- Cambio en el select de categorías ---
+  if (categorySelect) {
+    categorySelect.addEventListener("change", () => {
+      const value = categorySelect.value.toLowerCase();
+      const filtered = filterProductsByCategory(value);
+      renderProducts(filtered);
+    });
+  }
 
-  // Mostrar todos inicialmente
+  // --- Mostrar todos al inicio ---
   renderProducts(products);
 });
+

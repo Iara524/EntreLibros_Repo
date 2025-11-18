@@ -1,75 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo de Productos</title>
-    <link rel="stylesheet" href="css/carrito.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito</title>
+
+  <!-- CSS global del sitio (si lo tenés) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- CSS específico del carrito -->
+  <link rel="stylesheet" href="css/carrito.css">
 </head>
 <body>
-    <header>
-        <h1>Carrito</h1>
-    </header>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tienda | Carrito</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="header">
-    <h1 class="logo">Mi Tienda</h1>
 
-    <div class="search-wrapper">
-      <input
-        type="text"
-        id="input-search-products"
-        placeholder="Buscar productos..."
-      />
-    </div>
-
-    <div class="cart-icon">
-      🛒
-      <span id="cart-count">0</span>
-    </div>
+  <header>
+    <h1>Carrito</h1>
   </header>
-    <!-- Carrito -->
-    <aside class="cart-section">
-      <h2>Carrito</h2>
-      <ul id="cart-list" class="cart-list">
-        <!-- Items del carrito se agregan acá por JS -->
-      </ul>
 
-      <div class="cart-total-row">
-        <span>Total:</span>
-        <span id="cart-total">$0</span>
+  <main>
+    <div class="carrito-container">
+      <h2>Resumen de tu compra</h2>
+
+      <ul id="cart-list"></ul>
+
+      <div class="cart-summary">
+        <p>Productos en el carrito: <span id="cart-count">0</span></p>
+        <p>Total: <span id="cart-total">$0</span></p>
       </div>
-    </aside>
+
+      <div class="cart-actions">
+        <button id="btn-clear-cart" class="btn-clear">Vaciar carrito</button>
+        <a href="producto.html" class="btn-back">Volver a productos</a>
+      </div>
+    </div>
   </main>
 
-  
-  <script src="producto.html"></script>
-</body>
-</html>
-
   <footer>
-        <div class="copyright">
-            <p>© 2025 EntreLibros. Todos los derechos reservados.</p>
-            <p>Hecho en Argentina.</p>
-        </div>
-        <div class="redes">
-            <a href="#"><img src="icons/instagram.ico" alt="Instagram">EntreLibros</a>
-            <a href="#"><img src="icons/whatsapp.ico" alt="whatsapp">+54 11 115024-2325 </a>
-        </div>
-        <div class="contactdata">
-            <p>Email: contactoentrelibros@entrelibros.com</p>
-            <p>Teléfono: +54 11 115024-2325</p>
-            <p>"Si no encuentras el libro que buscas.Podes contactarnos."</p>
-        </div>
-    </footer>
+    <div class="copyright">
+      <p>© 2025 EntreLibros. Todos los derechos reservados.</p>
+      <p>Hecho en Argentina.</p>
+    </div>
+    <div class="redes">
+      <a href="#"><img src="icons/instagram.ico" alt="Instagram">EntreLibros</a>
+      <a href="#"><img src="icons/whatsapp.ico" alt="whatsapp">+54 11 115024-2325 </a>
+    </div>
+    <div class="contactdata">
+      <p>Email: contactoentrelibros@entrelibros.com</p>
+      <p>Teléfono: +54 11 115024-2325</p>
+      <p>"Si no encuentras el libro que buscas. Podés contactarnos."</p>
+    </div>
+  </footer>
 
+  <script src="js/carrito.js"></script>
 </body>
-
 </html>
