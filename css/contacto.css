@@ -39,11 +39,11 @@ body {
 .contact-form input,
 .contact-form textarea {
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
   background: #fafafa;
-  color: #fafafa;
+  color: #000;
   transition: border-color .2s ease, box-shadow .2s ease;
 }
 

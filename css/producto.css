@@ -79,119 +79,72 @@ nav a:hover,
    Grilla de productos
    (antes era main.producto)
   */
-.product-container {
-  max-width: 1200px;
-  margin: 20px auto 40px;
-  padding: 0 20px;
+#lista-productos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
 }
 
-/* 
-   Tarjeta de producto
-   (antes .producto)
-= */
-.product-card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+.producto-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  position: relative;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  overflow: hidden;
-  transition: transform .2s ease, box-shadow .2s ease;
-  padding: 12px;
 }
 
-.product-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-}
-
-/* si más adelante agregás imágenes dentro del producto */
-.product-card img {
+.card-img img {
   width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background: #fafafa;
+  height: 260px;
+  object-fit: cover;
 }
 
-/* títulos y texto dentro de la tarjeta */
-.product-card h3{
-  margin: 8px 0 4px;
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.card-category {
+  color: #777;
+  font-size: 14px;
+}
+
+.card-description {
+  margin: 10px 0;
+  font-size: 14px;
+  flex-grow: 1;
+}
+
+.card-price {
+  font-weight: bold;
+  margin-bottom: 12px;
   font-size: 16px;
 }
-.product-card p{
-  margin: 4px 0;
-}
 
-/* botón Agregar al carrito (antes .producto button) */
-.product-card button {
-  margin: 12px 0 4px;
-  padding: 10px;
-  background: #444;
+.btn-agregar-carrito {
+  background: #2c7be5;
   color: white;
   border: none;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background .2s ease;
+  font-size: 14px;
 }
 
-.product-card button:hover {
-  background: #222;
+.btn-agregar-carrito:hover {
+  background: #1b5fc1;
 }
 
-/* =========================
-   Carrito
-   ========================= */
-h2{
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 20px;
-}
 
-#cart-count,
-#cart-total{
-  font-weight: 700;
-}
 
-#cart-list{
-  max-width: var(--maxw);
-  margin: 0 auto 20px;
-  padding: 0 20px;
-  list-style: none;
-}
-
-#cart-list li{
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:6px;
-  padding:8px 10px;
-  margin-bottom:6px;
-  font-size:14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* 
-   Responsive
-    */
-
-/* Tablet (≤ 992px) */
-@media (max-width: 992px) {
-  .product-container {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-  }
-  .product-card img {
-    height: 180px;
-  }
-  .product-card h3 {
-    font-size: 15px;
-  }
-}
 
 /* Celular (≤ 600px) */
 @media (max-width: 600px) {

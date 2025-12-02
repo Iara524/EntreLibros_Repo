@@ -1,15 +1,14 @@
-const AIRTABLE_BASE  = "appRr5pVrwkvLrA5M";   // tu base de Airtable
-const AIRTABLE_TABLE = "Consultas";
+import AIRTABLE_CONFIG from '../config.js';
 
-const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${encodeURIComponent(AIRTABLE_TABLE)}`;
+//datos airtable 
+const AIRTABLE_TOKEN = AIRTABLE_CONFIG.TOKEN;
+const AIRTABLE_BASE_ID = AIRTABLE_CONFIG.BASE_ID;
+const AIRTABLE_CONTACT_TABLE = AIRTABLE_CONFIG.TABLE_NAME;
 
-// Leemos SIEMPRE el token desde localStorage
-function getAirtableToken() {
-  return localStorage.getItem("AIRTABLE_TOKEN") || "";
-}
 
-// FORMULARIO
-document.addEventListener("DOMContentLoaded", () => {
+
+
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".contact-form");
   let statusMsg = document.getElementById("form-status");
 
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.appendChild(statusMsg);
   }
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const nombre  = document.getElementById("nombre").value.trim();
@@ -39,39 +38,22 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const token = getAirtableToken();
-    if (!token) {
-      statusMsg.textContent = "Falta el token de Airtable en este navegador. Cargalo primero (AIRTABLE_TOKEN en localStorage).";
-      statusMsg.style.color = "red";
-      return;
-    }
-
-    statusMsg.textContent = "Enviando...";
-    statusMsg.style.color = "black";
-
     try {
-      const res = await fetch(AIRTABLE_URL, {
+      const res = await fetch("/api/consultas", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          records: [
-            {
-              fields: {
-                Nombre: nombre,
-                Email: correo,
-                Asunto: asunto,
-                Mensaje: mensaje
-              }
-            }
-          ]
+          nombre: nombre,
+          correo: correo,
+          asunto: asunto,
+          mensaje: mensaje
         })
       });
 
       const data = await res.json();
-      console.log("Respuesta Airtable:", data);
+      console.log("Respuesta del servidor:", data);
 
       if (res.ok) {
         statusMsg.textContent = "¡Mensaje enviado correctamente! Responderemos en breve ✔";
@@ -82,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         statusMsg.style.color = "red";
       }
     } catch (err) {
-      console.error("Error al llamar a Airtable:", err);
+      console.error("Error al llamar al servidor:", err);
       statusMsg.textContent = "Error de conexión. Intenta de nuevo.";
       statusMsg.style.color = "red";
     }
