@@ -1,21 +1,17 @@
-import AIRTABLE_CONFIG from '../config.js';
 
 //datos airtable 
 const AIRTABLE_TOKEN = AIRTABLE_CONFIG.TOKEN;
 const AIRTABLE_BASE_ID = AIRTABLE_CONFIG.BASE_ID;
-const AIRTABLE_CONTACT_TABLE = AIRTABLE_CONFIG.TABLE_NAME;
+const AIRTABLE_CONTACT_TABLE = AIRTABLE_CONFIG.CONSULTAS_TABLE;
 
-
+const AIRTABLE_BASE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}`;
 
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".contact-form");
   let statusMsg = document.getElementById("form-status");
 
-  if (!form) {
-    console.error("No se encontró el formulario .contact-form");
-    return;
-  }
+  if (!form) return;
 
   if (!statusMsg) {
     statusMsg = document.createElement("p");
@@ -33,43 +29,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const mensaje = document.getElementById("mensaje").value.trim();
 
     if (!nombre || !correo || !asunto || !mensaje) {
-      statusMsg.textContent = "Se deben completar todos los campos.";
+      statusMsg.textContent = "Completa todos los campos.";
       statusMsg.style.color = "red";
       return;
     }
 
+    statusMsg.textContent = "Enviando...";
+    statusMsg.style.color = "black";
+
     try {
-      const res = await fetch("/api/consultas", {
+      const res = await fetch(`${AIRTABLE_BASE_URL}/${AIRTABLE_CONTACT_TABLE}`, {
         method: "POST",
         headers: {
+          "Authorization": `Bearer ${AIRTABLE_TOKEN}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          nombre: nombre,
-          correo: correo,
-          asunto: asunto,
-          mensaje: mensaje
+          fields: {
+            Nombre: nombre,
+            Email: correo,
+            Asunto: asunto,
+            Mensaje: mensaje
+          }
         })
       });
 
       const data = await res.json();
-      console.log("Respuesta del servidor:", data);
+      console.log("Airtable:", data);
 
       if (res.ok) {
-        statusMsg.textContent = "¡Mensaje enviado correctamente! Responderemos en breve ✔";
+        statusMsg.textContent = "Mensaje enviado ✅";
         statusMsg.style.color = "green";
         form.reset();
       } else {
-        statusMsg.textContent = "Hubo un error al enviar el mensaje.";
+        statusMsg.textContent = "Error al enviar ❌";
         statusMsg.style.color = "red";
       }
+
     } catch (err) {
-      console.error("Error al llamar al servidor:", err);
-      statusMsg.textContent = "Error de conexión. Intenta de nuevo.";
+      console.error(err);
+      statusMsg.textContent = "Error de conexión ❌";
       statusMsg.style.color = "red";
     }
   });
 });
-
-
 
