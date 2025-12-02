@@ -1,0 +1,8 @@
+const AIRTABLE_CONFIG = {
+TOKEN:'pat8LkKjqGThEfr6l.9c5f80d4cc28ee962409192c5e01b6851f0bb6fcc344b871b5cf8539b42037bb',
+BASE_ID:'appRr5pVrwkvLrA5M',
+PRODUCTS_TABLE:'tblEAfXgBb8OhTmpq',
+CONSULTAS_TABLE:'Consultas'
+
+};
+
